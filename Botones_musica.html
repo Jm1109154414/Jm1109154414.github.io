@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica con APIs</title>
+</head>
+<body>
+
+  <h1>Uso de APIs</h1>
+
+  <h2>Botón 1: Romeo y Julieta</h2>
+  <button onclick="mostrarRomeoJulieta()">Mostrar Romeo y Julieta</button>
+  <div id="resultadoLibro"></div>
+
+  <hr>
+
+  <h2>Botón 2: Imagen de cantante o banda</h2>
+  <input type="text" id="artista" placeholder="Escribe un cantante o banda">
+  <button onclick="mostrarArtista()">Mostrar imagen</button>
+  <div id="resultadoArtista"></div>
+
+  <script>
+    async function mostrarRomeoJulieta() {
+      const resultado = document.getElementById("resultadoLibro");
+      resultado.innerHTML = "Cargando...";
+
+      try {
+        const respuesta = await fetch("https://openlibrary.org/subjects/love.json?published_in=1500-1600");
+        const data = await respuesta.json();
+
+        const obra = data.works.find(libro =>
+          libro.title.toLowerCase().includes("romeo and juliet")
+        );
+
+        if (obra) {
+          const autor = obra.authors && obra.authors.length > 0
+            ? obra.authors[0].name
+            : "Autor no disponible";
+
+          resultado.innerHTML = `
+            <h3>${obra.title}</h3>
+            <p><strong>Autor:</strong> ${autor}</p>
+            <p><strong>Año de publicación:</strong> ${obra.first_publish_year}</p>
+          `;
+        } else {
+          resultado.innerHTML = "<p>No se encontró Romeo y Julieta.</p>";
+        }
+      } catch (error) {
+        resultado.innerHTML = "<p>Error al consultar la API.</p>";
+        console.error(error);
+      }
+    }
+
+    async function mostrarArtista() {
+      const nombre = document.getElementById("artista").value.trim();
+      const resultado = document.getElementById("resultadoArtista");
+
+      if (nombre === "") {
+        resultado.innerHTML = "<p>Escribe el nombre de un cantante o banda.</p>";
+        return;
+      }
+
+      resultado.innerHTML = "Cargando imagen...";
+
+      try {
+        const respuesta = await fetch(`https://www.theaudiodb.com/api/v1/json/123/search.php?s=${encodeURIComponent(nombre)}`);
+        const data = await respuesta.json();
+
+        if (data.artists && data.artists.length > 0) {
+          const artista = data.artists[0];
+
+          resultado.innerHTML = `
+            <h3>${artista.strArtist}</h3>
+            <img src="${artista.strArtistThumb}" alt="${artista.strArtist}" width="300">
+          `;
+        } else {
+          resultado.innerHTML = "<p>No se encontró ese artista.</p>";
+        }
+      } catch (error) {
+        resultado.innerHTML = "<p>Error al consultar la API.</p>";
+        console.error(error);
+      }
+    }
+  </script>
+
+</body>
+</html>
