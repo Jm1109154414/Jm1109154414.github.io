@@ -19,40 +19,42 @@
         //console.log("DOM listo");
     });
 
-  async function irPorImagen(){
-    try{
-      const respuesta = await fetch("https://api.thedogapi.com/v1/images/search?limit=1",  {
-        method: "GET",
-        headers: {
-          "x-api-key": "live_1JvLCxkKMOQEzZqJBMCBjIPX3lOZH9tp84TvDhd7ajz8nud96JNPScTpy0YeP0NJ"
-        }
-      });
-      const data = await respuesta.json();
-      console.log(data);
-    } catch (error) {
-      console.error("Error:", error.message);
-    }
-  }
-
-  async function irPorAlgo() {
-    try {
-      const respuesta = await fetch("https://api.thedogapi.com/v1/breeds?limit=2",      {
-        method: "GET", 
-        headers: {
-          "x-api-key": "live_1JvLCxkKMOQEzZqJBMCBjIPX3lOZH9tp84TvDhd7ajz8nud96JNPScTpy0YeP0NJ"
-        }
-      });
-      if (!respuesta.ok) {
-        console.log("Error");
-        //throw new Error("Error");
+async function irPorImagen(){
+  try{
+    const respuesta = await fetch("https://api.thedogapi.com/v1/images/search?limit=1",  {
+      method: "GET",
+      headers: {
+        "x-api-key": "live_1JvLCxkKMOQEzZqJBMCBjIPX3lOZH9tp84TvDhd7ajz8nud96JNPScTpy0YeP0NJ"
       }
-      const data = await respuesta.json();
-      console.log(data);
-    } catch (error) {
-      console.error("Error:", error.message);
-    }
+    });
+    const data = await respuesta.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error:", error.message);
   }
+}  // <-- CIERRA AQUÍ la función irPorImagen
 
+async function irPorAlgo() {
+  try {
+    const respuesta = await fetch("https://api.thedogapi.com/v1/breeds?limit=2", {
+      method: "GET", 
+      headers: {
+        "x-api-key": "live_1JvLCxkKMOQEzZqJBMCBjIPX3lOZH9tp84TvDhd7ajz8nud96JNPScTpy0YeP0NJ"
+      }
+    });
+    if (!respuesta.ok) {
+      console.log("Error");
+    }
+    const data = await respuesta.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error:", error.message);
+  }
+}  // <-- CIERRA AQUÍ la función irPorAlgo
+
+async function obtenerJSON() {
+  // tu código comentado aquí
+}  // <-- CIERRA AQUÍ la función obtenerJSON
      async function obtenerJSON() {
        // const respuesta = await fetch('');  
        // const datos = await respuesta.json();
