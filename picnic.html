@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Picnic</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi página con Picnic CSS</title>
+  
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+
+  
+  <style>
+    .flex.demo{
+     margin: .2em 0;
+     background: #dbe2dc;
+     text-align: center;
+    }
+    .flex.demo div {
+      border:.1em solid pink;
+    }
+
+  </style>
 </head>
 <body>
-    <button id="un_boton">Click me!</button>
-    <div id="biografia"></div>
+
+  <div class="tabs three">
+    <input id='tab-1' type='radio' name='tabgroupB' checked />
+    <label class="pseudo button toggle" for="tab-1">Pregunta 1</label>
+    <input id='tab-2' type='radio' name='tabgroupB'>
+    <label class="pseudo button toggle" for="tab-2">Pregunta 2</label>
+    <input id='tab-3' type='radio' name='tabgroupB'>
+    <div class="row">
+      <div>
+        <h3>¿Cómo vas con tu reto?</h3>
+        <p>Bien, avanzando en la primera entrega de ciclo 0 y en nuestro mockup.</p>
+      </div>
+
+      <div>
+        <h3>¿Qué te parece lo más complicado de tu reto?</h3>
+        <p>Entender bien las necesidades del cliente ya que se deja muy abierto a nosotros el proyecto lo cuál puede generar ambiguedad.</p>
+      </div>
 
     <script>
 
