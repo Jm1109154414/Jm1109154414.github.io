@@ -22,7 +22,29 @@
   </style>
 </head>
 <body>
-  
+
+  <div class="tabs three">
+    <input id='tab-1' type='radio' name='tabgroupB' checked />
+    <label class="pseudo button toggle" for="tab-1">Pregunta 1</label>
+    <input id='tab-2' type='radio' name='tabgroupB'>
+    <label class="pseudo button toggle" for="tab-2">Pregunta 2</label>
+    <input id='tab-3' type='radio' name='tabgroupB'>
+    <div class="row">
+      <div>
+        <h3>¿Cómo vas con tu reto?</h3>
+        <p>Bien, avanzando en la primera entrega de ciclo 0 y en nuestro mockup.</p>
+      </div>
+
+      <div>
+        <h3>¿Qué te parece lo más complicado de tu reto?</h3>
+        <p>Entender bien las necesidades del cliente ya que se deja muy abierto a nosotros el proyecto lo cuál puede generar ambiguedad.</p>
+      </div>
+
+      <div>
+        <img src="img/balloon.jpg">
+      </div>
+    </div>
+  </div>
 
   <button id="un_boton">Haz algo</button>
   <div class="flex two four-1200 demo">
@@ -43,10 +65,28 @@
 
     document.addEventListener("DOMContentLoaded", function() {
         un_boton = document.getElementById("un_boton");
-        un_boton.addEventListener("click", );
+        un_boton.addEventListener("click", irPorAlgo);
         //console.log("DOM listo");
     });
 
+  async function irPorAlgo() {
+    try {
+          const respuesta = await fetch("https://api.thedogapi.com/v1/breeds?limit=1",      {
+          method: "GET", 
+          headers: {
+              "x-api-key": "live_eRwy5I5bZ36SHwpeaOeWsRdLVBxllVPZIAp3zIWQvrdYpIEMWG9cInb5PWy5GrN6"
+          }
+  });
+      if (!respuesta.ok) {
+        console.log("Error");
+        //throw new Error("Error");
+      }
+      const data = await respuesta.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
+  }
 
      async function obtenerJSON() {
        // const respuesta = await fetch('');  
@@ -62,24 +102,7 @@
         //imagenArtista.setAttribute('src', '');
      }
 
-    async function irPorAlgo() {
-    try {
-        const respuesta = await fetch("https://api.thedogapi.com/v1/facts/random",      {
-                method: "GET", 
-                headers: {
-                    "x-api-key": "live_1JvLCxkKMOQEzZqJBMCBjIPX3lOZH9tp84TvDhd7ajz8nud96JNPScTpy0YeP0NJ"
-                }
-        });
-            if (!respuesta.ok) {
-            console.log("Error");
-            //throw new Error("Error");
-            }
-            const data = await respuesta.json();
-            console.log(data);
-        } catch (error) {
-            console.error("Error:", error.message);
-        }
-        }
+
 
     </script>
 </body>
