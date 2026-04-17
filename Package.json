@@ -8,6 +8,7 @@
     "start": "node Archivoserv.js",
     "imss": "node Archivo2.js",
     "chalk": "node Archivo3.js",
+    "api": "node Archivo4.js",
     "server": "node Archivoserv.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
