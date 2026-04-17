@@ -4,7 +4,7 @@
   "description": "Actividad de API con GET externo y POST en servidor",
   "main": "server.js",
   "scripts": {
-    "porfa": "node server.js",
+    "porfa": "Archivo.js",
     "start": "node server.js",
     "imss": "node archivo2.js",
     "chalk": "node archivo3.js",
