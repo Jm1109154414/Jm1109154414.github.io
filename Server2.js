@@ -90,7 +90,7 @@ import fs from 'fs';
     function manejarRuta404(req, res) {
       res.writeHead(404, { 'Content-Type': 'text/plain' });
       //Cambia el mensaje por algo más divertido
-      res.end('!Ooops! Hay fiesta en esta ruta pero no estás invitado!');
+      res.end('!Ooops! Hay fiesta en esta ruta pero no estas invitado!');
     }
 
     function mostrarEquipo(req, res) {
