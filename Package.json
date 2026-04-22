@@ -10,6 +10,7 @@
     "chalk": "node Archivo3.js",
     "api": "node Archivo4.js",
     "server": "node Archivoserv.js",
+    "dev": "node Server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
