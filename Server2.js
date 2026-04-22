@@ -153,6 +153,19 @@ import fs from 'fs';
       //https://www.aljazeera.com/opinions/2019/3/13/digital-colonialism-is-threatening-the-global-south
       
       
+      // tenemos que usar esto para las imagenes porque el navegador hace una solicitud para obtener la imagen y el servidor tiene que responder con el archivo de imagen correcto. Si no manejamos esta solicitud, el navegador no podrá mostrar la imagen en la página web.
+      else if (url.endsWith('.jpeg') || url.endsWith('.jpg') || url.endsWith('.png') || url.endsWith('.gif')) {
+        fs.readFile(url.substring(1), (error, data) => {
+          if (error) {
+            res.writeHead(404, { 'Content-Type': 'text/plain' });
+            res.end('Imagen no encontrada');
+            return;
+          }
+          const contentType = url.endsWith('.png') ? 'image/png' : 'image/jpeg';
+          res.writeHead(200, { 'Content-Type': contentType });
+          res.end(data);
+        });
+      }
       else {
         manejarRuta404(req, res);
       }
