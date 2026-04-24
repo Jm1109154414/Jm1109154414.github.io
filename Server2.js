@@ -104,6 +104,18 @@ import fs from 'fs';
             res.end(data);
         });
       }
+      function mostrarSaldo(req, res) {
+        fs.readFile('saldo.html', 'utf8', (error, data) => {
+            if (error) {
+              res.writeHead(500, { 'Content-Type': 'text/plain' });
+              res.end('Oh no!!!!');
+              return;
+            }
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end(data);
+        });
+      }
+
 
       function mostrarOpinion(req, res) {
         fs.readFile('opinion.html', 'utf8', (error, data) => {
